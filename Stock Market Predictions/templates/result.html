@@ -1,0 +1,51 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results - {{ stock_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Prediction Results</h1>
+        
+        <div class="card result-card">
+            <h2>{{ stock_name }} ({{ stock_symbol }})</h2>
+            
+            <div class="prediction-summary">
+                <div class="summary-item">
+                    <span class="label">Latest Price:</span>
+                    <span class="value">${{ latest_price }}</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="label">Predicted Price ({{ prediction_date }}):</span>
+                    <span class="value">${{ predicted_price }}</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="label">Change:</span>
+                    <span class="value {% if price_change >= 0 %}positive{% else %}negative{% endif %}">
+                        ${{ price_change }} ({{ percent_change }}%)
+                    </span>
+                </div>
+            </div>
+            
+            <div class="price-chart">
+                <h3>Price History and Prediction</h3>
+                <img src="{{ plot_url }}" alt="Stock Price Prediction Chart" class="chart-image">
+            </div>
+            
+            <div class="result-actions">
+                <a href="{{ url_for('index') }}" class="btn secondary">Back to Home</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Stock Market Prediction App &copy; 2025</p>
+        </div>
+    </div>
+</body>
+</html>

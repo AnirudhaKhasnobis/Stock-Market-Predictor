@@ -1,0 +1,46 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Market Prediction</h1>
+        <div class="card">
+            <h2>Select a Stock to Predict</h2>
+            
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <form action="{{ url_for('predict') }}" method="post">
+                <div class="form-group">
+                    <label for="stock_symbol">Stock Symbol:</label>
+                    <select id="stock_symbol" name="stock_symbol" required>
+                        <option value="">-- Select a stock --</option>
+                        {% for symbol, name in stocks.items() %}
+                        <option value="{{ symbol }}">{{ name }} ({{ symbol }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Predict</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <p>Stock Market Prediction App &copy; 2025</p>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

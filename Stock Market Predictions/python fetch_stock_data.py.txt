@@ -1,0 +1,6 @@
+python fetch_stock_data.py
+python preprocess_data.py
+python train_model.py
+python predict_stock_price.py
+python visualize_predictions.py
+
